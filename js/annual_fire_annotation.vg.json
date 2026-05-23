@@ -1,0 +1,145 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Five Years of Australian Bushfires \u2014 Total Area Burned",
+    "subtitle": "Black Summer (2019\u201320) is highlighted among five fire seasons",
+    "fontSize": 14,
+    "subtitleFontSize": 11,
+    "subtitleColor": "#888",
+    "anchor": "start",
+    "font": "Lato"
+  },
+  "width": "container",
+  "height": 240,
+  "data": {
+    "url": "data/annual_fire_total.csv"
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "bar",
+        "cornerRadiusTopLeft": 4,
+        "cornerRadiusTopRight": 4
+      },
+      "encoding": {
+        "x": {
+          "field": "season",
+          "type": "ordinal",
+          "title": "Fire Season",
+          "axis": {
+            "labelAngle": 0,
+            "labelFontSize": 11,
+            "titleFontSize": 12
+          }
+        },
+        "y": {
+          "field": "area_Mha",
+          "type": "quantitative",
+          "title": "Total Area Burned (Mha)",
+          "axis": {
+            "titleFontSize": 12,
+            "labelFontSize": 11,
+            "grid": true,
+            "gridColor": "#eee"
+          }
+        },
+        "color": {
+          "condition": {
+            "test": "datum.season === '2019-20'",
+            "value": "#b30000"
+          },
+          "value": "#d9a87c"
+        },
+        "tooltip": [
+          {
+            "field": "season",
+            "title": "Season"
+          },
+          {
+            "field": "area_Mha",
+            "title": "Total Burned (Mha)",
+            "format": ".2f"
+          },
+          {
+            "field": "area_ha",
+            "title": "Total Burned (ha)",
+            "format": ","
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "dy": -10,
+        "fontSize": 10,
+        "fontWeight": "bold"
+      },
+      "encoding": {
+        "x": {
+          "field": "season",
+          "type": "ordinal"
+        },
+        "y": {
+          "field": "area_Mha",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "area_Mha",
+          "format": ".1f"
+        },
+        "color": {
+          "condition": {
+            "test": "datum.season === '2019-20'",
+            "value": "#b30000"
+          },
+          "value": "#777"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "season": "2019-20",
+            "label": "Black Summer",
+            "y": 29.5
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "dx": 55,
+        "dy": 0,
+        "fontSize": 11,
+        "fontStyle": "italic",
+        "fontWeight": "bold",
+        "color": "#b30000"
+      },
+      "encoding": {
+        "x": {
+          "field": "season",
+          "type": "ordinal"
+        },
+        "y": {
+          "field": "y",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "label"
+        }
+      }
+    }
+  ],
+  "config": {
+    "background": "transparent",
+    "view": {
+      "stroke": null
+    },
+    "font": "Lato"
+  },
+  "autosize": {
+    "type": "fit",
+    "contains": "padding"
+  }
+}

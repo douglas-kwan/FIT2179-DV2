@@ -1,0 +1,98 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "State Rankings by Fire Extent — Five Seasons",
+    "subtitle": "NSW surged from 4th to 3rd in Black Summer; Victoria rose sharply to 4th",
+    "fontSize": 14,
+    "subtitleFontSize": 11,
+    "subtitleColor": "#888",
+    "anchor": "start",
+    "font": "Lato"
+  },
+  "width": "container",
+  "height": 300,
+  "autosize": {"type": "fit", "contains": "padding"},
+  "data": {"url": "data/fire_rank_by_season.csv"},
+  "layer": [
+    {
+      "params": [
+        {
+          "name": "state_hl",
+          "select": {"type": "point", "fields": ["state"]},
+          "bind": "legend"
+        }
+      ],
+      "mark": {"type": "line", "strokeWidth": 3, "interpolate": "linear"},
+      "encoding": {
+        "x": {
+          "field": "season",
+          "type": "ordinal",
+          "title": "Fire Season",
+          "axis": {"labelAngle": 0, "labelFontSize": 11, "titleFontSize": 12}
+        },
+        "y": {
+          "field": "rank",
+          "type": "quantitative",
+          "title": "Rank (1 = most burned)",
+          "scale": {"domain": [1, 8], "reverse": true},
+          "axis": {
+            "tickMinStep": 1,
+            "values": [1, 2, 3, 4, 5, 6, 7, 8],
+            "labelFontSize": 11,
+            "titleFontSize": 12,
+            "grid": true,
+            "gridColor": "#eee"
+          }
+        },
+        "color": {
+          "field": "state",
+          "type": "nominal",
+          "title": "State",
+          "scale": {
+            "domain": ["Northern Territory", "Queensland", "New South Wales", "Victoria", "Western Australia", "South Australia", "Tasmania"],
+            "range": ["#b30000", "#fc8d59", "#4e9a8e", "#2c7bb6", "#fdae61", "#8e44ad", "#95a5a6"]
+          },
+          "legend": {
+            "titleFontSize": 10,
+            "labelFontSize": 9,
+            "orient": "bottom",
+            "direction": "horizontal",
+            "columns": 4
+          }
+        },
+        "detail": {"field": "state", "type": "nominal"},
+        "opacity": {
+          "condition": {"param": "state_hl", "value": 1},
+          "value": 0.08
+        }
+      }
+    },
+    {
+      "mark": {"type": "circle", "size": 100},
+      "encoding": {
+        "x": {"field": "season", "type": "ordinal"},
+        "y": {
+          "field": "rank",
+          "type": "quantitative",
+          "scale": {"domain": [1, 8], "reverse": true}
+        },
+        "color": {"field": "state", "type": "nominal", "legend": null},
+        "opacity": {
+          "condition": {"param": "state_hl", "value": 1},
+          "value": 0.08
+        },
+        "tooltip": [
+          {"field": "state",    "title": "State"},
+          {"field": "season",   "title": "Season"},
+          {"field": "rank",     "title": "Rank"},
+          {"field": "area_Mha", "title": "Area Burned (Mha)", "format": ".2f"}
+        ]
+      }
+    }
+  ],
+  "config": {
+    "background": "transparent",
+    "view": {"stroke": null},
+    "font": "Lato"
+  }
+}

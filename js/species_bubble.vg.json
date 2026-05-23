@@ -1,0 +1,131 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Wildlife at Risk: Species Groups vs. Threat Level",
+    "subtitle": "Bubble size = number of species affected; click to filter",
+    "fontSize": 14,
+    "subtitleFontSize": 11,
+    "subtitleColor": "#888",
+    "anchor": "start",
+    "font": "Lato"
+  },
+  "width": "container",
+  "height": 250,
+  "data": {
+    "url": "data/species_by_type_status.csv"
+  },
+  "params": [
+    {
+      "name": "status_sel",
+      "select": {
+        "type": "point",
+        "fields": [
+          "Threatened_Status"
+        ]
+      },
+      "bind": "legend"
+    }
+  ],
+  "mark": {
+    "type": "circle",
+    "opacity": 0.85
+  },
+  "encoding": {
+    "x": {
+      "field": "Threatened_Status",
+      "type": "ordinal",
+      "title": "Threat Status",
+      "sort": [
+        "Vulnerable",
+        "Endangered",
+        "Critically Endangered"
+      ],
+      "axis": {
+        "labelAngle": 0,
+        "labelFontSize": 11,
+        "titleFontSize": 12,
+        "grid": false
+      }
+    },
+    "y": {
+      "field": "Type",
+      "type": "nominal",
+      "title": "Species Group",
+      "sort": {
+        "field": "count",
+        "order": "descending"
+      },
+      "axis": {
+        "labelFontSize": 11,
+        "titleFontSize": 12,
+        "grid": true,
+        "gridColor": "#eee"
+      }
+    },
+    "size": {
+      "field": "count",
+      "type": "quantitative",
+      "title": "Species Count",
+      "scale": {
+        "range": [
+          30,
+          2000
+        ]
+      },
+      "legend": {
+        "titleFontSize": 10,
+        "labelFontSize": 9,
+        "orient": "bottom"
+      }
+    },
+    "color": {
+      "field": "Threatened_Status",
+      "type": "nominal",
+      "scale": {
+        "domain": [
+          "Vulnerable",
+          "Endangered",
+          "Critically Endangered"
+        ],
+        "range": [
+          "#f4a261",
+          "#e76f51",
+          "#6d1f00"
+        ]
+      },
+      "legend": null
+    },
+    "opacity": {
+      "condition": {
+        "param": "status_sel",
+        "value": 0.85
+      },
+      "value": 0.1
+    },
+    "tooltip": [
+      {
+        "field": "Type",
+        "title": "Species Group"
+      },
+      {
+        "field": "Threatened_Status",
+        "title": "Threat Status"
+      },
+      {
+        "field": "count",
+        "title": "Species Count"
+      }
+    ]
+  },
+  "config": {
+    "background": "transparent",
+    "view": {
+      "stroke": null
+    },
+    "font": "Lato"
+  },
+  "autosize": {
+    "type": "fit",
+    "contains": "padding"
+  }
+}

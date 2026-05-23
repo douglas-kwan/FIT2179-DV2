@@ -1,0 +1,123 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Forest Fire Extent Across Australia \u2014 Black Summer 2019\u201320",
+    "subtitle": "Total hectares of forest and non-forest land burned by state/territory",
+    "fontSize": 15,
+    "subtitleFontSize": 12,
+    "subtitleColor": "#888",
+    "anchor": "start",
+    "font": "Lato",
+    "color": "#222"
+  },
+  "width": "container",
+  "height": 400,
+  "projection": {
+    "type": "equirectangular"
+  },
+  "layer": [
+    {
+      "data": {
+        "url": "STE_2016_AUST_simple.json",
+        "format": {
+          "type": "topojson",
+          "feature": "STE_2016_AUST"
+        }
+      },
+      "transform": [
+        {
+          "lookup": "properties.STE_NAME16",
+          "from": {
+            "data": {
+              "url": "data/black_summer_by_state.csv"
+            },
+            "key": "state",
+            "fields": [
+              "area_ha",
+              "area_Mha"
+            ]
+          }
+        }
+      ],
+      "mark": {
+        "type": "geoshape",
+        "stroke": "#fff",
+        "strokeWidth": 1.2
+      },
+      "encoding": {
+        "color": {
+          "field": "area_Mha",
+          "type": "quantitative",
+          "title": "Area Burned (Mha)",
+          "scale": {
+            "type": "threshold",
+            "domain": [
+              0.5,
+              2,
+              5,
+              10,
+              15
+            ],
+            "range": [
+              "#fef0d9",
+              "#fdd49e",
+              "#fdbb84",
+              "#fc8d59",
+              "#e34a33",
+              "#b30000"
+            ]
+          },
+          "legend": {
+            "title": "Burned Area (Mha)",
+            "titleFontSize": 11,
+            "labelFontSize": 10,
+            "orient": "bottom",
+            "direction": "horizontal",
+            "gradientLength": 200
+          }
+        },
+        "tooltip": [
+          {
+            "field": "properties.STE_NAME16",
+            "title": "State / Territory"
+          },
+          {
+            "field": "area_Mha",
+            "title": "Area Burned (Mha)",
+            "format": ".2f"
+          },
+          {
+            "field": "area_ha",
+            "title": "Area Burned (ha)",
+            "format": ","
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "url": "STE_2016_AUST_simple.json",
+        "format": {
+          "type": "topojson",
+          "feature": "STE_2016_AUST"
+        }
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": null,
+        "stroke": "#aaa",
+        "strokeWidth": 0.5
+      }
+    }
+  ],
+  "config": {
+    "background": "transparent",
+    "view": {
+      "stroke": null
+    }
+  },
+  "autosize": {
+    "type": "fit",
+    "contains": "padding"
+  }
+}

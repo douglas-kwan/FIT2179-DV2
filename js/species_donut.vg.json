@@ -1,0 +1,71 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Breakdown by Threat Level",
+    "subtitle": "331 species in fire-affected zones",
+    "fontSize": 14,
+    "subtitleFontSize": 11,
+    "subtitleColor": "#888",
+    "anchor": "middle",
+    "font": "Lato"
+  },
+  "width": 200,
+  "height": 200,
+  "data": {
+    "url": "data/species_by_status.csv"
+  },
+  "mark": {
+    "type": "arc",
+    "innerRadius": 60,
+    "outerRadius": 100
+  },
+  "encoding": {
+    "theta": {
+      "field": "count",
+      "type": "quantitative"
+    },
+    "color": {
+      "field": "Threatened_Status",
+      "type": "nominal",
+      "title": "Threat Status",
+      "scale": {
+        "domain": [
+          "Vulnerable",
+          "Endangered",
+          "Critically Endangered"
+        ],
+        "range": [
+          "#f4a261",
+          "#e76f51",
+          "#6d1f00"
+        ]
+      },
+      "legend": {
+        "titleFontSize": 10,
+        "labelFontSize": 9,
+        "orient": "bottom"
+      }
+    },
+    "tooltip": [
+      {
+        "field": "Threatened_Status",
+        "title": "Threat Status"
+      },
+      {
+        "field": "count",
+        "title": "Species Count"
+      }
+    ]
+  },
+  "config": {
+    "background": "transparent",
+    "view": {
+      "stroke": null
+    },
+    "font": "Lato"
+  },
+  "autosize": {
+    "type": "fit",
+    "contains": "padding"
+  }
+}

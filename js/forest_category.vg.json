@@ -1,0 +1,97 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "What Burned? Fire by Vegetation Category (2019\u201320)",
+    "subtitle": "Native forest bore the greatest share of fire damage",
+    "fontSize": 14,
+    "subtitleFontSize": 11,
+    "subtitleColor": "#888",
+    "anchor": "start",
+    "font": "Lato"
+  },
+  "width": "container",
+  "height": 220,
+  "data": {
+    "url": "data/fire_by_category.csv"
+  },
+  "transform": [
+    {
+      "filter": "datum.category !== ''"
+    }
+  ],
+  "mark": {
+    "type": "bar",
+    "cornerRadiusTopLeft": 3,
+    "cornerRadiusTopRight": 3
+  },
+  "encoding": {
+    "y": {
+      "field": "category",
+      "type": "nominal",
+      "title": null,
+      "sort": "-x",
+      "axis": {
+        "labelFontSize": 11
+      }
+    },
+    "x": {
+      "field": "area_Mha",
+      "type": "quantitative",
+      "title": "Area Burned (Mha)",
+      "stack": "zero",
+      "axis": {
+        "titleFontSize": 12,
+        "labelFontSize": 11,
+        "grid": true,
+        "gridColor": "#eee"
+      }
+    },
+    "color": {
+      "field": "fire_type",
+      "type": "nominal",
+      "title": "Fire Type",
+      "scale": {
+        "domain": [
+          "Planned",
+          "Unplanned"
+        ],
+        "range": [
+          "#4e9a8e",
+          "#d7552b"
+        ]
+      },
+      "legend": {
+        "titleFontSize": 11,
+        "labelFontSize": 10,
+        "orient": "bottom",
+        "direction": "horizontal"
+      }
+    },
+    "tooltip": [
+      {
+        "field": "category",
+        "title": "Vegetation Category"
+      },
+      {
+        "field": "fire_type",
+        "title": "Fire Type"
+      },
+      {
+        "field": "area_Mha",
+        "title": "Area Burned (Mha)",
+        "format": ".3f"
+      }
+    ]
+  },
+  "config": {
+    "background": "transparent",
+    "view": {
+      "stroke": null
+    },
+    "font": "Lato"
+  },
+  "autosize": {
+    "type": "fit",
+    "contains": "padding"
+  }
+}

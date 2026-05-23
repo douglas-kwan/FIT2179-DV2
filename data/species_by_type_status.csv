@@ -1,0 +1,21 @@
+Type,Threatened_Status,count
+Bird,Critically Endangered,3
+Bird,Endangered,4
+Bird,Vulnerable,2
+Fish,Endangered,3
+Fish,Vulnerable,1
+Frog,Critically Endangered,3
+Frog,Endangered,4
+Frog,Vulnerable,7
+Insect,Critically Endangered,1
+Insect,Endangered,2
+Insect,Vulnerable,1
+Mammal,Endangered,8
+Mammal,Vulnerable,8
+Plant,Critically Endangered,22
+Plant,Endangered,87
+Plant,Vulnerable,163
+Reptile,Critically Endangered,2
+Reptile,Endangered,2
+Reptile,Vulnerable,3
+Spider,Vulnerable,1

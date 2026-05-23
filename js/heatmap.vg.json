@@ -1,0 +1,108 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Fire Activity Heatmap \u2014 All States & Seasons",
+    "subtitle": "Millions of hectares burned per state per fire season (2016\u20132021)",
+    "fontSize": 14,
+    "subtitleFontSize": 11,
+    "subtitleColor": "#888",
+    "anchor": "start",
+    "font": "Lato"
+  },
+  "width": "container",
+  "height": 280,
+  "data": {
+    "url": "data/fire_by_state_year.csv"
+  },
+  "mark": {
+    "type": "rect",
+    "stroke": "#fff",
+    "strokeWidth": 1
+  },
+  "encoding": {
+    "x": {
+      "field": "season",
+      "type": "ordinal",
+      "title": "Fire Season",
+      "axis": {
+        "labelAngle": -30,
+        "labelFontSize": 10,
+        "titleFontSize": 12
+      }
+    },
+    "y": {
+      "field": "state",
+      "type": "nominal",
+      "title": null,
+      "sort": [
+        "Northern Territory",
+        "Queensland",
+        "Western Australia",
+        "New South Wales",
+        "South Australia",
+        "Victoria",
+        "Tasmania",
+        "Australian Capital Territory"
+      ],
+      "axis": {
+        "labelFontSize": 10,
+        "labelLimit": 200
+      }
+    },
+    "color": {
+      "field": "area_Mha",
+      "type": "quantitative",
+      "title": "Burned (Mha)",
+      "scale": {
+        "type": "sqrt",
+        "domain": [
+          0,
+          30
+        ],
+        "range": [
+          "#fff7ec",
+          "#fee8c8",
+          "#fdd49e",
+          "#fdbb84",
+          "#fc8d59",
+          "#ef6548",
+          "#d7301f",
+          "#990000"
+        ]
+      },
+      "legend": {
+        "titleFontSize": 10,
+        "labelFontSize": 9,
+        "orient": "bottom",
+        "direction": "horizontal",
+        "gradientLength": 220
+      }
+    },
+    "tooltip": [
+      {
+        "field": "state",
+        "title": "State"
+      },
+      {
+        "field": "season",
+        "title": "Season"
+      },
+      {
+        "field": "area_Mha",
+        "title": "Area Burned (Mha)",
+        "format": ".2f"
+      }
+    ]
+  },
+  "config": {
+    "background": "transparent",
+    "view": {
+      "stroke": null
+    },
+    "font": "Lato"
+  },
+  "autosize": {
+    "type": "fit",
+    "contains": "padding"
+  }
+}

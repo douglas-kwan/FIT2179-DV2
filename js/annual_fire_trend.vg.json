@@ -1,0 +1,119 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Annual Forest Fire Area in Australia, 2016\u20132021",
+    "subtitle": "Millions of hectares burned each fire season, by fire type",
+    "fontSize": 14,
+    "subtitleFontSize": 11,
+    "subtitleColor": "#888",
+    "anchor": "start",
+    "font": "Lato"
+  },
+  "width": "container",
+  "height": 240,
+  "data": {
+    "url": "data/annual_fire_by_type.csv"
+  },
+  "params": [
+    {
+      "name": "fire_type_select",
+      "select": {
+        "type": "point",
+        "fields": [
+          "fire_type"
+        ]
+      },
+      "bind": "legend"
+    }
+  ],
+  "mark": {
+    "type": "line",
+    "point": {
+      "filled": true,
+      "size": 80
+    },
+    "strokeWidth": 2.5
+  },
+  "encoding": {
+    "x": {
+      "field": "season",
+      "type": "ordinal",
+      "title": "Fire Season",
+      "axis": {
+        "labelAngle": 0,
+        "labelFontSize": 11,
+        "titleFontSize": 12
+      }
+    },
+    "y": {
+      "field": "area_Mha",
+      "type": "quantitative",
+      "title": "Area Burned (Mha)",
+      "axis": {
+        "titleFontSize": 12,
+        "labelFontSize": 11,
+        "grid": true,
+        "gridColor": "#eee"
+      }
+    },
+    "color": {
+      "field": "fire_type",
+      "type": "nominal",
+      "title": "Fire Type",
+      "scale": {
+        "domain": [
+          "Planned",
+          "Unplanned"
+        ],
+        "range": [
+          "#4e9a8e",
+          "#d7552b"
+        ]
+      },
+      "legend": {
+        "titleFontSize": 11,
+        "labelFontSize": 10,
+        "orient": "bottom",
+        "direction": "horizontal"
+      }
+    },
+    "opacity": {
+      "condition": {
+        "param": "fire_type_select",
+        "value": 1
+      },
+      "value": 0.15
+    },
+    "tooltip": [
+      {
+        "field": "season",
+        "title": "Season"
+      },
+      {
+        "field": "fire_type",
+        "title": "Fire Type"
+      },
+      {
+        "field": "area_Mha",
+        "title": "Area Burned (Mha)",
+        "format": ".2f"
+      },
+      {
+        "field": "area_ha",
+        "title": "Area Burned (ha)",
+        "format": ","
+      }
+    ]
+  },
+  "config": {
+    "background": "transparent",
+    "view": {
+      "stroke": null
+    },
+    "font": "Lato"
+  },
+  "autosize": {
+    "type": "fit",
+    "contains": "padding"
+  }
+}

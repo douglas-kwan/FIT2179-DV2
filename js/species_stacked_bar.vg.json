@@ -1,0 +1,99 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Threatened Species Impacted by the Black Summer Fires",
+    "subtitle": "Species count by taxonomic group and EPBC threat status",
+    "fontSize": 14,
+    "subtitleFontSize": 11,
+    "subtitleColor": "#888",
+    "anchor": "start",
+    "font": "Lato"
+  },
+  "width": "container",
+  "height": 260,
+  "data": {
+    "url": "data/species_by_type_status.csv"
+  },
+  "transform": [
+    {
+      "filter": "datum.Type !== 'Spider'"
+    }
+  ],
+  "mark": {
+    "type": "bar",
+    "cornerRadiusTopLeft": 3,
+    "cornerRadiusTopRight": 3
+  },
+  "encoding": {
+    "y": {
+      "field": "Type",
+      "type": "nominal",
+      "title": "Species Group",
+      "sort": "-x",
+      "axis": {
+        "labelFontSize": 11,
+        "titleFontSize": 12
+      }
+    },
+    "x": {
+      "field": "count",
+      "type": "quantitative",
+      "title": "Number of Species",
+      "stack": "zero",
+      "axis": {
+        "titleFontSize": 12,
+        "labelFontSize": 11,
+        "grid": true,
+        "gridColor": "#eee"
+      }
+    },
+    "color": {
+      "field": "Threatened_Status",
+      "type": "nominal",
+      "title": "Threat Status",
+      "scale": {
+        "domain": [
+          "Vulnerable",
+          "Endangered",
+          "Critically Endangered"
+        ],
+        "range": [
+          "#f4a261",
+          "#e76f51",
+          "#6d1f00"
+        ]
+      },
+      "legend": {
+        "titleFontSize": 11,
+        "labelFontSize": 10,
+        "orient": "bottom",
+        "direction": "horizontal"
+      }
+    },
+    "tooltip": [
+      {
+        "field": "Type",
+        "title": "Species Group"
+      },
+      {
+        "field": "Threatened_Status",
+        "title": "Threat Status"
+      },
+      {
+        "field": "count",
+        "title": "Number of Species"
+      }
+    ]
+  },
+  "config": {
+    "background": "transparent",
+    "view": {
+      "stroke": null
+    },
+    "font": "Lato"
+  },
+  "autosize": {
+    "type": "fit",
+    "contains": "padding"
+  }
+}

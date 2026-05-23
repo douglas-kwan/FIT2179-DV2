@@ -1,0 +1,9 @@
+category,fire_type,area_ha,area_Mha
+Commercial plantation,Planned,10867,0.011
+Commercial plantation,Unplanned,128060,0.128
+Native forest,Planned,4343235,4.343
+Native forest,Unplanned,16602619,16.603
+Non-forest,Planned,2161546,2.162
+Non-forest,Unplanned,4050277,4.05
+Other forest,Planned,615,0.001
+Other forest,Unplanned,12138,0.012

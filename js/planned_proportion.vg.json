@@ -1,0 +1,92 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Proportion of Planned vs. Unplanned Fires by Season",
+    "subtitle": "Unplanned fires dominated the Black Summer \u2014 but less so than 2017\u201318",
+    "fontSize": 14,
+    "subtitleFontSize": 11,
+    "subtitleColor": "#888",
+    "anchor": "start",
+    "font": "Lato"
+  },
+  "width": "container",
+  "height": 220,
+  "data": {
+    "url": "data/annual_fire_by_type.csv"
+  },
+  "mark": {
+    "type": "bar"
+  },
+  "encoding": {
+    "x": {
+      "field": "season",
+      "type": "ordinal",
+      "title": "Fire Season",
+      "axis": {
+        "labelAngle": 0,
+        "labelFontSize": 11,
+        "titleFontSize": 12
+      }
+    },
+    "y": {
+      "field": "area_Mha",
+      "type": "quantitative",
+      "title": "Proportion of Burned Area",
+      "stack": "normalize",
+      "axis": {
+        "titleFontSize": 12,
+        "labelFontSize": 11,
+        "format": "%",
+        "grid": true,
+        "gridColor": "#eee"
+      }
+    },
+    "color": {
+      "field": "fire_type",
+      "type": "nominal",
+      "title": "Fire Type",
+      "scale": {
+        "domain": [
+          "Planned",
+          "Unplanned"
+        ],
+        "range": [
+          "#4e9a8e",
+          "#d7552b"
+        ]
+      },
+      "legend": {
+        "titleFontSize": 11,
+        "labelFontSize": 10,
+        "orient": "bottom",
+        "direction": "horizontal"
+      }
+    },
+    "tooltip": [
+      {
+        "field": "season",
+        "title": "Season"
+      },
+      {
+        "field": "fire_type",
+        "title": "Fire Type"
+      },
+      {
+        "field": "area_Mha",
+        "title": "Area Burned (Mha)",
+        "format": ".2f"
+      }
+    ]
+  },
+  "config": {
+    "background": "transparent",
+    "view": {
+      "stroke": null
+    },
+    "font": "Lato"
+  },
+  "autosize": {
+    "type": "fit",
+    "contains": "padding"
+  }
+}
