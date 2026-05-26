@@ -5,23 +5,18 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
   <title>Australia's Black Summer — Fire, Forest & Wildlife</title>
 
-  <!-- Vega-Lite libraries -->
   <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
 
-  <!-- Stylesheet -->
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 
 <body>
 
-  <!-- ===================================================
-       HERO
-  ==================================================== -->
+  <!-- HERO -->
   <header class="hero">
     <p class="hero-eyebrow">FIT2179 Data Visualisation 2 &mdash; Doug &mdash; 2026</p>
     <h1>Australia's <span>Black Summer</span><br/>Fire, Forest &amp; Wildlife</h1>
@@ -52,51 +47,50 @@
 
   <div class="page-wrapper">
 
-    <!-- ===================================================
-         SECTION 1 — GEOGRAPHIC SCOPE
-    ==================================================== -->
+    <!-- 01 — GEOGRAPHIC SCOPE -->
     <section class="section">
       <div class="section-header">
         <span class="section-tag">01 — Where Did It Burn?</span>
         <h2>A Nation on Fire — Geographic Scope of Black Summer</h2>
         <p>
-          No Australian state or territory was untouched. The Northern Territory recorded the largest
-          total burned area (12.6 Mha), but the most dramatic departure from normal was in
-          New South Wales and Victoria — typically mild fire states — where forests burned on an
-          unprecedented scale. Hover over each state to see its total.
+          No Australian state or territory was untouched. Areas on this map are measured in
+          <strong>Mha (million hectares)</strong> — one Mha equals ten thousand square kilometres,
+          roughly the size of greater Sydney. The Northern Territory recorded the largest total
+          burned area (12.6 Mha), but the most dramatic departure from normal was in New South
+          Wales and Victoria, where forests burned on an unprecedented scale. Hover over each
+          state to see its total.
         </p>
       </div>
 
       <div class="card full-width">
         <div id="choropleth_map"></div>
         <p class="card-caption">
-          <strong>Source:</strong> ABARES, Fires in Australia's Forests 2016–21 (2024).
-          Area in millions of hectares (Mha) includes forest and non-forest land burned by all fire types.
-          Map uses ABS State &amp; Territory boundaries, STE 2016.
+          <strong>Source:</strong> ABARES, <em>Fires in Australia's Forests 2016–21</em> (2024).
+          Total area includes forest and non-forest land burned by all fire types.
+          Map uses ABS State &amp; Territory boundaries (STE 2016).
         </p>
       </div>
 
       <div class="callout" style="margin-top:28px;">
         The <strong>Northern Territory</strong> dominates by total area due to its vast size and
-        high fire frequency from grassland and savanna burning. What makes Black Summer exceptional
-        is that <strong>NSW (+1,779% above its four-season average) and Victoria (+1,132%)</strong>
-        burned at levels never recorded before.
+        high frequency of savanna burning. What makes Black Summer exceptional is that
+        <strong>NSW — normally a low-fire state — burned 23 times above its seasonal average</strong>,
+        and Victoria burned 12 times above its average.
       </div>
     </section>
 
     <hr class="divider" />
 
-    <!-- ===================================================
-         SECTION 2 — FIVE SEASONS IN CONTEXT
-    ==================================================== -->
+    <!-- 02 — FIVE SEASONS IN CONTEXT -->
     <section class="section">
       <div class="section-header">
         <span class="section-tag">02 — How Big Was It Really?</span>
         <h2>Five Seasons of Fire — Putting Black Summer in Context</h2>
         <p>
-          To understand how extreme the 2019–20 season was, we need to compare it against
-          previous years. Both total area and the split between planned (prescribed) burns and
-          unplanned (wildfire) burning tell an important story.
+          To understand how extreme 2019–20 was, we compare it against the four preceding
+          seasons. Both total area burned and the split between <em>planned</em> (prescribed)
+          burns and <em>unplanned</em> wildfires tell an important story. Click the legend in
+          either chart to focus on a fire type.
         </p>
       </div>
 
@@ -104,119 +98,60 @@
         <div class="card">
           <div id="annual_annotation"></div>
           <p class="card-caption">
-            Black Summer (2019–20) burned 27.3 Mha across Australia's forests and surrounding
-            land — the second-highest total in this five-year window, but devastating for
-            the heavily populated south-east.
+            Black Summer (2019–20) burned 27.3 million hectares — the second-highest total in
+            this five-year window, but devastating for the heavily populated south-east.
+            <strong>Source:</strong> ABARES 2024.
           </p>
         </div>
         <div class="card">
           <div id="annual_trend"></div>
           <p class="card-caption">
-            Click the legend to highlight Planned or Unplanned fire lines.
-            2019–20 saw the lowest planned burn total in five years — a factor that may have
-            contributed to severity. <strong>Source:</strong> ABARES 2024.
+            The red dashed line marks the Black Summer unplanned peak. In 2019–20, the planned
+            burn total was the <em>lowest of any season</em> — drought conditions made
+            prescribed burning unsafe across large areas. <strong>Source:</strong> ABARES 2024.
           </p>
         </div>
       </div>
 
       <div class="insight-box" style="margin-top:28px;">
-        🔥 <strong>Why does 2017–18 show the highest total?</strong> The Northern Territory
-        experienced exceptional savanna fire that season (29.8 Mha), inflating the national total.
-        In contrast, Black Summer's destruction was concentrated in the densely forested,
+        🔥 <strong>Why does 2017–18 show the highest national total?</strong> The Northern
+        Territory experienced exceptional savanna fires that season (29.8 Mha), inflating the
+        national figure. Black Summer's destruction was concentrated in the densely forested,
         populated south-east — making its human and ecological impact far more severe per hectare.
       </div>
     </section>
 
     <hr class="divider" />
 
-    <!-- ===================================================
-         SECTION 3 — PLANNED vs UNPLANNED
-    ==================================================== -->
+    <!-- 03 — PLANNED vs UNPLANNED -->
     <section class="section">
       <div class="section-header">
         <span class="section-tag">03 — Planned vs. Unplanned Burning</span>
-        <h2>The Role of Fire Management — Did Planned Burns Help?</h2>
+        <h2>Fire Management Under Pressure — Who Burned What, and How?</h2>
         <p>
-          Prescribed (planned) burning is a key fire management tool in Australia. Governments
-          and fire agencies use it to reduce fuel loads before the dangerous summer fire season.
-          Examining the ratio of planned to unplanned fire reveals whether this management kept pace.
+          Prescribed (planned) burning is Australia's primary tool for reducing dangerous fuel
+          loads before fire season. The two charts below show the national balance of planned
+          vs. unplanned fire across all five seasons, and how that breakdown played out
+          differently in each state during Black Summer.
         </p>
       </div>
 
-      <div class="grid-wide-narrow">
+      <div class="grid-2-equal">
         <div class="card">
           <div id="planned_proportion"></div>
           <p class="card-caption">
-            Each bar represents 100% of fire area for that season, split by fire type.
-            In 2019–20, unplanned fires accounted for 76% of all burned area — and the
-            absolute planned burn total was the lowest across all five seasons at just 6.5 Mha.
+            Each bar represents 100% of burned area for that season. In 2019–20, unplanned
+            wildfires made up <strong>76%</strong> of all fire area — while the planned burn
+            total was the lowest of any season at just 6.5 million hectares.
             <strong>Source:</strong> ABARES 2024.
           </p>
         </div>
-        <div class="card">
-          <p style="font-size:0.95rem;color:#444;margin-bottom:18px;font-weight:700;">Key Finding</p>
-          <p style="font-size:0.93rem;color:#555;line-height:1.75;">
-            The 2019–20 season had the <strong style="color:#b30000;">lowest planned burn area</strong>
-            of any season studied. Drought conditions during 2019 made prescribed burning
-            difficult or impossible in many regions, removing a critical buffer against
-            the fires that followed.
-          </p>
-          <div style="margin:22px 0 0;padding:16px;background:#fff5f0;border-radius:8px;border:1px solid #f4d0c0;">
-            <p style="font-size:0.85rem;color:#7a2a0a;line-height:1.6;">
-              Planned burns completed in 2019–20:
-              <strong style="font-size:1.3rem;display:block;color:#b30000;font-family:'Playfair Display',serif;">6.5 Mha</strong>
-            </p>
-            <p style="font-size:0.85rem;color:#7a2a0a;margin-top:6px;line-height:1.6;">
-              Unplanned (wildfire) area:
-              <strong style="font-size:1.3rem;display:block;color:#b30000;font-family:'Playfair Display',serif;">20.8 Mha</strong>
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <hr class="divider" />
-
-    <!-- ===================================================
-         SECTION 4 — STATE-BY-STATE BREAKDOWN
-    ==================================================== -->
-    <section class="section">
-      <div class="section-header">
-        <span class="section-tag">04 — State by State</span>
-        <h2>Which States Were Hardest Hit — And How Did Rankings Shift?</h2>
-        <p>
-          Two complementary views below reveal how fire burden was distributed across states
-          in Black Summer, and how those rankings changed from season to season.
-          Click the legend on the bump chart to follow individual states across five seasons.
-        </p>
-      </div>
-
-      <div class="grid-2">
         <div class="card">
           <div id="state_fire_bar"></div>
           <p class="card-caption">
-            Stacked bars show planned (teal) vs. unplanned (orange) fire area by state in 2019–20.
-            Click a state in the legend to highlight it. Nearly all NSW burning was unplanned wildfire.
-            <strong>Source:</strong> ABARES 2024.
-          </p>
-        </div>
-        <div class="card">
-          <div id="bump_chart"></div>
-          <p class="card-caption">
-            Bump chart: state rankings (1 = most burned) across five fire seasons.
-            NSW moved from 4th to 3rd in Black Summer; Victoria rose sharply to 4th, overtaking WA.
-            <strong>Source:</strong> ABARES 2024.
-          </p>
-        </div>
-      </div>
-
-      <div style="margin-top:28px;">
-        <div class="card">
-          <div id="heatmap"></div>
-          <p class="card-caption">
-            Heatmap showing fire extent by state and season. The Northern Territory's persistent
-            red tone reflects chronic high fire activity. The sudden darkening of NSW and Victoria
-            in 2019–20 is visually striking and confirms the exceptional nature of Black Summer.
+            Stacked bars show planned (teal) vs. unplanned (orange) burning by state in 2019–20.
+            Labels show each state's total. Nearly all NSW and Victorian burning was unplanned
+            wildfire. Click a state in the legend to highlight it.
             <strong>Source:</strong> ABARES 2024.
           </p>
         </div>
@@ -225,37 +160,70 @@
 
     <hr class="divider" />
 
-    <!-- ===================================================
-         SECTION 5 — WHAT BURNED & WHO WAS AFFECTED
-    ==================================================== -->
+    <!-- 04 — STATE RANKINGS -->
     <section class="section">
       <div class="section-header">
-        <span class="section-tag">05 — What Burned?</span>
-        <h2>Vegetation Types and the Scale of Destruction</h2>
+        <span class="section-tag">04 — State Rankings Over Time</span>
+        <h2>How Fire Burden Shifted Across States — Five Seasons</h2>
         <p>
-          The fire's reach extended across multiple vegetation types, but native forest —
-          which is home to Australia's most unique wildlife — bore the brunt of the unplanned
-          burning. The connected dot chart reveals how dramatically Black Summer exceeded
-          normal fire seasons for densely populated states.
+          These two views reveal the same story at different scales: the bump chart tracks
+          each state's rank position across five seasons, while the heatmap shows the
+          absolute intensity. The 2019–20 column tells the Black Summer story at a glance.
+          Click the legend on the bump chart to follow individual states.
         </p>
       </div>
 
-      <div class="grid-2">
+      <div class="grid-2-equal">
+        <div class="card">
+          <div id="bump_chart"></div>
+          <p class="card-caption">
+            State rankings by total fire area (1 = most burned). NSW rose sharply from 4th to
+            3rd in Black Summer; Victoria jumped to 4th, overtaking Western Australia.
+            <strong>Source:</strong> ABARES 2024.
+          </p>
+        </div>
+        <div class="card">
+          <div id="heatmap"></div>
+          <p class="card-caption">
+            Cell values show Mha burned (cells under 0.5 Mha are left blank for readability).
+            The sudden darkening of NSW and Victoria in 2019–20 stands out sharply against
+            their pale cells in earlier seasons. <strong>Source:</strong> ABARES 2024.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- 05 — WHAT BURNED -->
+    <section class="section">
+      <div class="section-header">
+        <span class="section-tag">05 — What Burned?</span>
+        <h2>Vegetation Types and the True Scale of Destruction</h2>
+        <p>
+          The fire swept across all vegetation categories, but native forest — home to
+          Australia's most unique wildlife — bore the overwhelming share of unplanned burning.
+          The comparison chart on the right shows just how far outside the historical range
+          Black Summer was for the states that matter most.
+        </p>
+      </div>
+
+      <div class="grid-2-equal">
         <div class="card">
           <div id="forest_category"></div>
           <p class="card-caption">
-            Native forest accounted for 20.9 Mha of the 2019–20 fire area — the vast majority
-            unplanned (wildfire). Commercial plantations and other forests were also affected.
-            <strong>Source:</strong> ABARES 2024.
+            Lollipop chart showing total burned area by vegetation type in 2019–20. Native
+            forest (20.9 Mha) dwarfs every other category — more than three times the area
+            of all non-forest land burned. <strong>Source:</strong> ABARES 2024.
           </p>
         </div>
         <div class="card">
           <div id="connected_dot"></div>
           <p class="card-caption">
-            Each line connects Black Summer (red dot) to the average of the other four seasons
-            (teal dot). For NSW, Black Summer was <strong>23× above the seasonal average</strong>;
-            for Victoria, <strong>12×</strong>.
-            <strong>Source:</strong> ABARES 2024.
+            Each line connects a state's Black Summer total (red) to its average across the
+            other four seasons (teal). For NSW, the gap represents a <strong>23× increase</strong>;
+            for Victoria, <strong>12×</strong>. Queensland and Tasmania burned less than
+            their averages. <strong>Source:</strong> ABARES 2024.
           </p>
         </div>
       </div>
@@ -263,41 +231,40 @@
 
     <hr class="divider" />
 
-    <!-- ===================================================
-         SECTION 6 — ECOLOGICAL IMPACT
-    ==================================================== -->
+    <!-- 06 — ECOLOGICAL TOLL -->
     <section class="section">
       <div class="section-header">
         <span class="section-tag">06 — The Ecological Toll</span>
         <h2>331 Threatened Species in the Path of the Fires</h2>
         <p>
-          Beyond the land itself, the fires tore through the habitat of hundreds of species
+          Beyond the land itself, the fires swept through the habitat of hundreds of species
           already listed as threatened under Australia's Environment Protection and Biodiversity
-          Conservation (EPBC) Act. The analysis below is based on spatial overlap between
-          fire extent and modelled species distributions.
+          Conservation (EPBC) Act — the national law governing threatened wildlife. The analysis
+          below is based on spatial overlap between fire extent and modelled species distributions.
         </p>
       </div>
 
       <div class="callout">
         Of the <strong>331 EPBC-listed threatened species</strong> in fire-affected zones,
-        <strong>31 were Critically Endangered</strong> — meaning a significant portion of each
-        species' entire known distribution was within the burn scar. For some species,
-        the fires may have been an extinction-level event.
+        <strong>31 were Critically Endangered</strong> — the highest threat category,
+        meaning a significant portion of each species' entire known range was within the burn scar.
+        For some species, the Black Summer may mark a permanent population decline.
       </div>
 
-      <div class="grid-narrow-wide">
-        <div class="card" style="display:flex;flex-direction:column;align-items:center;justify-content:center;">
+      <div class="grid-narrow-wide-equal">
+        <div class="card">
           <div id="species_donut"></div>
           <p class="card-caption" style="text-align:center;">
-            56% Vulnerable, 33% Endangered, 9% Critically Endangered.
-            <strong>Source:</strong> DCCEEW, January 2020.
+            56% Vulnerable &nbsp;|&nbsp; 33% Endangered &nbsp;|&nbsp; 9% Critically Endangered.
+            <br/><strong>Source:</strong> DCCEEW, January 2020.
           </p>
         </div>
         <div class="card">
           <div id="species_bar"></div>
           <p class="card-caption">
-            Plants dominate by count (272 species), but frogs, mammals and reptiles carry
-            disproportionate ecological weight — many are endemic to south-east Australia.
+            Grouped bars show each threat level side by side within each species group.
+            Plants dominate by count (272 species), but frogs and reptiles are
+            disproportionately represented among Critically Endangered species.
             <strong>Source:</strong> DCCEEW, January 2020.
           </p>
         </div>
@@ -307,10 +274,9 @@
         <div class="card">
           <div id="species_bubble"></div>
           <p class="card-caption">
-            Bubble size represents number of species. Each bubble shows where a group
-            sits in the threat spectrum. Frogs and birds punch above their weight —
-            a disproportionate share of frog species are Critically Endangered.
-            Click a threat level in the legend to isolate it.
+            Bubble size encodes the number of species in each group–status combination.
+            Frogs punch far above their weight: 3 of 14 frog species in fire zones are
+            Critically Endangered. Click a threat status in the legend to isolate it.
             <strong>Source:</strong> DCCEEW, January 2020.
           </p>
         </div>
@@ -319,9 +285,7 @@
 
     <hr class="divider" />
 
-    <!-- ===================================================
-         CONCLUSION
-    ==================================================== -->
+    <!-- CONCLUSION -->
     <section class="section" style="padding-bottom:60px;">
       <div class="section-header">
         <span class="section-tag">Conclusion</span>
@@ -330,28 +294,28 @@
       <div class="grid-2">
         <div>
           <p style="font-size:0.96rem;color:#444;line-height:1.8;margin-bottom:16px;">
-            Australia has always had bushfires. But Black Summer was different: it was larger,
-            longer, and more geographically spread than any season on record. States like NSW and
-            Victoria — which had historically low fire activity — experienced fire on a scale that
-            exceeded their entire four-year average by more than an order of magnitude.
+            Australia has always had bushfires. But Black Summer was different: larger, longer,
+            and more geographically devastating than any season on record. States like NSW and
+            Victoria — which had historically low fire activity — experienced fire on a scale
+            that exceeded their entire four-year average by more than an order of magnitude.
           </p>
           <p style="font-size:0.96rem;color:#444;line-height:1.8;">
-            The ecological cost was immediate and severe. Over 300 threatened species had their
+            The ecological cost was immediate and severe. Over 330 threatened species had their
             habitat overlap with burn scars. Recovery for many will take decades; for some, the
-            Black Summer may mark a permanent decline.
+            Black Summer may mark a permanent decline toward extinction.
           </p>
         </div>
         <div>
           <p style="font-size:0.96rem;color:#444;line-height:1.8;margin-bottom:16px;">
             The fire management data reveals a troubling pattern: planned burn area was at its
-            lowest precisely when unplanned fire was at its most destructive. Extended drought
-            conditions in 2019 created a perfect storm — record fuel loads, record temperatures,
-            and record fire behaviour.
+            lowest precisely when unplanned wildfire was at its most destructive. Extended
+            drought conditions in 2019 created a perfect storm — record fuel loads, record
+            temperatures, and record fire behaviour across the south-east.
           </p>
           <div class="insight-box">
             Climate projections indicate that conditions similar to or worse than 2019 will
-            become increasingly common. Understanding the scale of Black Summer is not only
-            a historical exercise — it is essential preparation for what may come.
+            become increasingly common. Understanding the full scale of Black Summer is not
+            only a historical exercise — it is essential preparation for what may come next.
           </div>
         </div>
       </div>
@@ -359,9 +323,6 @@
 
   </div><!-- /page-wrapper -->
 
-  <!-- ===================================================
-       FOOTER
-  ==================================================== -->
   <footer>
     <p>
       <strong>Australia's Black Summer — Fire, Forest &amp; Wildlife</strong><br/>
@@ -371,14 +332,14 @@
     <p style="margin-top:12px;">
       <strong>Data Sources:</strong><br/>
       ABARES (2024). <em>Fires in Australia's Forests 2016–21</em>.
-      Department of Agriculture, Fisheries and Forestry.
+      Dept. of Agriculture, Fisheries and Forestry.
       <a href="https://www.agriculture.gov.au/abares/forestsaustralia/forest-data-maps-and-tools/spatial-data/forest-fire" target="_blank">Link</a>
       &nbsp;|&nbsp;
       DCCEEW (2020). <em>Threatened and migratory species in bushfire-affected areas</em>.
       Australian Government.
       <a href="https://www.dcceew.gov.au/environment/biodiversity/bushfire-recovery/bushfire-impacts" target="_blank">Link</a>
       &nbsp;|&nbsp;
-      ABS (2016). <em>State and Territory boundaries, STE_2016_AUST.json</em>.
+      ABS (2016). <em>State and Territory boundaries — STE 2016</em>.
       Australian Bureau of Statistics.
     </p>
     <p style="margin-top:10px;">
@@ -387,7 +348,6 @@
     </p>
   </footer>
 
-  <!-- Embed charts -->
   <script src="js/vega_vis.js"></script>
 
 </body>

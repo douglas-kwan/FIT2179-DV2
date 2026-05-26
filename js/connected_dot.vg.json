@@ -2,128 +2,71 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
     "text": "Black Summer vs. Typical Seasons: Selected States",
-    "subtitle": "NSW and Victoria burned 20\u00d7 more than their seasonal average",
-    "fontSize": 14,
-    "subtitleFontSize": 11,
-    "subtitleColor": "#888",
-    "anchor": "start",
-    "font": "Lato"
+    "subtitle": "NSW and Victoria burned 20× more than their seasonal average",
+    "fontSize": 14, "subtitleFontSize": 11, "subtitleColor": "#888",
+    "anchor": "start", "font": "Lato"
   },
   "width": "container",
   "height": 240,
-  "data": {
-    "url": "data/bs_vs_avg.csv"
-  },
+  "autosize": {"type": "fit", "contains": "padding"},
+  "data": {"url": "data/bs_vs_avg.csv"},
   "layer": [
     {
-      "mark": {
-        "type": "line",
-        "color": "#ccc",
-        "strokeWidth": 2.5
-      },
+      "mark": {"type": "line", "color": "#ccc", "strokeWidth": 2.5},
       "encoding": {
         "x": {
-          "field": "area_Mha",
-          "type": "quantitative",
-          "title": "Area Burned (Mha)",
-          "axis": {
-            "titleFontSize": 12,
-            "labelFontSize": 11,
-            "grid": true,
-            "gridColor": "#eee"
-          }
+          "field": "area_Mha", "type": "quantitative",
+          "title": "Area Burned (million ha)",
+          "axis": {"titleFontSize": 12, "labelFontSize": 11, "grid": true, "gridColor": "#eee"}
         },
         "y": {
-          "field": "state",
-          "type": "nominal",
-          "title": null,
-          "sort": [
-            "New South Wales",
-            "Victoria",
-            "Queensland",
-            "South Australia",
-            "Tasmania"
-          ],
-          "axis": {
-            "labelFontSize": 11
-          }
+          "field": "state", "type": "nominal", "title": null,
+          "sort": ["New South Wales","Victoria","Queensland","South Australia","Tasmania"],
+          "axis": {"labelFontSize": 11}
         },
-        "detail": {
-          "field": "state"
-        }
+        "detail": {"field": "state"}
       }
     },
     {
-      "mark": {
-        "type": "point",
-        "filled": true,
-        "size": 120,
-        "strokeWidth": 0
-      },
+      "mark": {"type": "point", "filled": true, "size": 130, "strokeWidth": 0},
       "encoding": {
-        "x": {
-          "field": "area_Mha",
-          "type": "quantitative"
-        },
+        "x": {"field": "area_Mha", "type": "quantitative"},
         "y": {
-          "field": "state",
-          "type": "nominal",
-          "sort": [
-            "New South Wales",
-            "Victoria",
-            "Queensland",
-            "South Australia",
-            "Tasmania"
-          ]
+          "field": "state", "type": "nominal",
+          "sort": ["New South Wales","Victoria","Queensland","South Australia","Tasmania"]
         },
         "color": {
-          "field": "period",
-          "type": "nominal",
-          "title": "Period",
+          "field": "period", "type": "nominal", "title": "Period",
           "scale": {
-            "domain": [
-              "Black Summer (2019\u201320)",
-              "Avg Other Seasons"
-            ],
-            "range": [
-              "#b30000",
-              "#4e9a8e"
-            ]
+            "domain": ["Black Summer (2019–20)", "Avg Other Seasons"],
+            "range": ["#b30000", "#4e9a8e"]
           },
-          "legend": {
-            "titleFontSize": 10,
-            "labelFontSize": 9,
-            "orient": "bottom",
-            "direction": "horizontal"
-          }
+          "legend": {"titleFontSize": 10, "labelFontSize": 9, "orient": "bottom", "direction": "horizontal"}
         },
         "tooltip": [
-          {
-            "field": "state",
-            "title": "State"
-          },
-          {
-            "field": "period",
-            "title": "Period"
-          },
-          {
-            "field": "area_Mha",
-            "title": "Area Burned (Mha)",
-            "format": ".3f"
-          }
+          {"field": "state", "title": "State"},
+          {"field": "period", "title": "Period"},
+          {"field": "area_Mha", "title": "Area Burned (Mha)", "format": ".3f"}
         ]
+      }
+    },
+    {
+      "data": {"values": [
+        {"state": "New South Wales", "area_Mha": 5.434, "label": "23× average"},
+        {"state": "Victoria",        "area_Mha": 1.539, "label": "12× average"},
+        {"state": "South Australia", "area_Mha": 0.322, "label": "3× average"}
+      ]},
+      "mark": {"type": "text", "align": "left", "dx": 10, "fontSize": 10,
+               "fontWeight": "bold", "color": "#b30000"},
+      "encoding": {
+        "x": {"field": "area_Mha", "type": "quantitative"},
+        "y": {
+          "field": "state", "type": "nominal",
+          "sort": ["New South Wales","Victoria","Queensland","South Australia","Tasmania"]
+        },
+        "text": {"field": "label"}
       }
     }
   ],
-  "config": {
-    "background": "transparent",
-    "view": {
-      "stroke": null
-    },
-    "font": "Lato"
-  },
-  "autosize": {
-    "type": "fit",
-    "contains": "padding"
-  }
+  "config": {"background": "transparent", "view": {"stroke": null}, "font": "Lato"}
 }

@@ -7,76 +7,14 @@
     "subtitleFontSize": 11,
     "subtitleColor": "#888",
     "anchor": "start",
-    "font": "Lato"
+    "font": "Lato",
+    "offset": 8,
+    "frame": "bounds"
   },
   "width": "container",
-  "height": 220,
+  "height": 300,
   "data": {
     "url": "data/annual_fire_by_type.csv"
-  },
-  "mark": {
-    "type": "bar"
-  },
-  "encoding": {
-    "x": {
-      "field": "season",
-      "type": "ordinal",
-      "title": "Fire Season",
-      "axis": {
-        "labelAngle": 0,
-        "labelFontSize": 11,
-        "titleFontSize": 12
-      }
-    },
-    "y": {
-      "field": "area_Mha",
-      "type": "quantitative",
-      "title": "Proportion of Burned Area",
-      "stack": "normalize",
-      "axis": {
-        "titleFontSize": 12,
-        "labelFontSize": 11,
-        "format": "%",
-        "grid": true,
-        "gridColor": "#eee"
-      }
-    },
-    "color": {
-      "field": "fire_type",
-      "type": "nominal",
-      "title": "Fire Type",
-      "scale": {
-        "domain": [
-          "Planned",
-          "Unplanned"
-        ],
-        "range": [
-          "#4e9a8e",
-          "#d7552b"
-        ]
-      },
-      "legend": {
-        "titleFontSize": 11,
-        "labelFontSize": 10,
-        "orient": "bottom",
-        "direction": "horizontal"
-      }
-    },
-    "tooltip": [
-      {
-        "field": "season",
-        "title": "Season"
-      },
-      {
-        "field": "fire_type",
-        "title": "Fire Type"
-      },
-      {
-        "field": "area_Mha",
-        "title": "Area Burned (Mha)",
-        "format": ".2f"
-      }
-    ]
   },
   "config": {
     "background": "transparent",
@@ -88,5 +26,103 @@
   "autosize": {
     "type": "fit",
     "contains": "padding"
-  }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "bar"
+      },
+      "encoding": {
+        "x": {
+          "field": "season",
+          "type": "ordinal",
+          "title": "Fire Season",
+          "axis": {
+            "labelAngle": 0,
+            "labelFontSize": 11,
+            "titleFontSize": 12
+          }
+        },
+        "y": {
+          "field": "area_Mha",
+          "type": "quantitative",
+          "title": "Proportion of Burned Area",
+          "stack": "normalize",
+          "axis": {
+            "titleFontSize": 12,
+            "labelFontSize": 11,
+            "format": "%",
+            "grid": true,
+            "gridColor": "#eee"
+          }
+        },
+        "color": {
+          "field": "fire_type",
+          "type": "nominal",
+          "title": "Fire Type",
+          "scale": {
+            "domain": [
+              "Planned",
+              "Unplanned"
+            ],
+            "range": [
+              "#4e9a8e",
+              "#d7552b"
+            ]
+          },
+          "legend": {
+            "titleFontSize": 11,
+            "labelFontSize": 10,
+            "orient": "bottom",
+            "direction": "horizontal"
+          }
+        },
+        "tooltip": [
+          {
+            "field": "season",
+            "title": "Season"
+          },
+          {
+            "field": "fire_type",
+            "title": "Fire Type"
+          },
+          {
+            "field": "area_Mha",
+            "title": "Area Burned (Mha)",
+            "format": ".2f"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "season": "2019-20"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "baseline": "bottom",
+        "fontSize": 10,
+        "fontWeight": "bold",
+        "color": "#b30000",
+        "dy": -4
+      },
+      "encoding": {
+        "x": {
+          "field": "season",
+          "type": "ordinal"
+        },
+        "y": {
+          "value": 0
+        },
+        "text": {
+          "value": "76% unplanned \u2193"
+        }
+      }
+    }
+  ]
 }

@@ -9,53 +9,10 @@
     "anchor": "middle",
     "font": "Lato"
   },
-  "width": 200,
-  "height": 200,
+  "width": "container",
+  "height": 280,
   "data": {
     "url": "data/species_by_status.csv"
-  },
-  "mark": {
-    "type": "arc",
-    "innerRadius": 60,
-    "outerRadius": 100
-  },
-  "encoding": {
-    "theta": {
-      "field": "count",
-      "type": "quantitative"
-    },
-    "color": {
-      "field": "Threatened_Status",
-      "type": "nominal",
-      "title": "Threat Status",
-      "scale": {
-        "domain": [
-          "Vulnerable",
-          "Endangered",
-          "Critically Endangered"
-        ],
-        "range": [
-          "#f4a261",
-          "#e76f51",
-          "#6d1f00"
-        ]
-      },
-      "legend": {
-        "titleFontSize": 10,
-        "labelFontSize": 9,
-        "orient": "bottom"
-      }
-    },
-    "tooltip": [
-      {
-        "field": "Threatened_Status",
-        "title": "Threat Status"
-      },
-      {
-        "field": "count",
-        "title": "Species Count"
-      }
-    ]
   },
   "config": {
     "background": "transparent",
@@ -67,5 +24,125 @@
   "autosize": {
     "type": "fit",
     "contains": "padding"
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "arc",
+        "innerRadius": 68,
+        "outerRadius": 110
+      },
+      "encoding": {
+        "theta": {
+          "field": "count",
+          "type": "quantitative"
+        },
+        "color": {
+          "field": "Threatened_Status",
+          "type": "nominal",
+          "title": "Threat Status",
+          "scale": {
+            "domain": [
+              "Vulnerable",
+              "Endangered",
+              "Critically Endangered"
+            ],
+            "range": [
+              "#f4a261",
+              "#e76f51",
+              "#6d1f00"
+            ]
+          },
+          "legend": {
+            "titleFontSize": 11,
+            "labelFontSize": 10,
+            "orient": "right",
+            "direction": "vertical",
+            "title": "Threat Status"
+          }
+        },
+        "tooltip": [
+          {
+            "field": "Threatened_Status",
+            "title": "Threat Status"
+          },
+          {
+            "field": "count",
+            "title": "Species Count"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "label": "331",
+            "sub": "species"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "fontSize": 22,
+        "fontWeight": "bold",
+        "color": "#1a1a1a",
+        "dy": -8
+      },
+      "encoding": {
+        "text": {
+          "field": "label"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "label": "species at risk"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "fontSize": 10,
+        "color": "#888",
+        "dy": 12
+      },
+      "encoding": {
+        "text": {
+          "field": "label"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "label": "31 Critically\nEndangered"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "fontSize": 9,
+        "fontWeight": "bold",
+        "color": "#6d1f00",
+        "dx": -70,
+        "dy": -60,
+        "lineBreak": "\n",
+        "align": "center"
+      },
+      "encoding": {
+        "text": {
+          "field": "label"
+        }
+      }
+    }
+  ],
+  "resolve": {
+    "scale": {
+      "theta": "independent"
+    }
   }
 }

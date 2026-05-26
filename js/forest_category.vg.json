@@ -1,8 +1,8 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
-    "text": "What Burned? Fire by Vegetation Category (2019\u201320)",
-    "subtitle": "Native forest bore the greatest share of fire damage",
+    "text": "What Burned? Total Area by Vegetation Type (2019\u201320)",
+    "subtitle": "Native forest suffered by far the greatest fire impact",
     "fontSize": 14,
     "subtitleFontSize": 11,
     "subtitleColor": "#888",
@@ -10,88 +10,163 @@
     "font": "Lato"
   },
   "width": "container",
-  "height": 220,
+  "height": 240,
+  "autosize": {
+    "type": "fit",
+    "contains": "padding"
+  },
   "data": {
-    "url": "data/fire_by_category.csv"
+    "url": "data/fire_category_total.csv"
   },
   "transform": [
     {
-      "filter": "datum.category !== ''"
+      "calculate": "0",
+      "as": "zero"
     }
   ],
-  "mark": {
-    "type": "bar",
-    "cornerRadiusTopLeft": 3,
-    "cornerRadiusTopRight": 3
-  },
-  "encoding": {
-    "y": {
-      "field": "category",
-      "type": "nominal",
-      "title": null,
-      "sort": "-x",
-      "axis": {
-        "labelFontSize": 11
+  "layer": [
+    {
+      "mark": {
+        "type": "rule",
+        "strokeWidth": 2.5,
+        "color": "#d9a87c"
+      },
+      "encoding": {
+        "y": {
+          "field": "category",
+          "type": "nominal",
+          "sort": {
+            "field": "area_Mha",
+            "order": "descending"
+          },
+          "title": null,
+          "axis": {
+            "labelFontSize": 11,
+            "labelLimit": 200
+          }
+        },
+        "x": {
+          "field": "zero",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              24
+            ]
+          },
+          "axis": null
+        },
+        "x2": {
+          "field": "area_Mha",
+          "type": "quantitative"
+        }
       }
     },
-    "x": {
-      "field": "area_Mha",
-      "type": "quantitative",
-      "title": "Area Burned (Mha)",
-      "stack": "zero",
-      "axis": {
-        "titleFontSize": 12,
-        "labelFontSize": 11,
-        "grid": true,
-        "gridColor": "#eee"
-      }
-    },
-    "color": {
-      "field": "fire_type",
-      "type": "nominal",
-      "title": "Fire Type",
-      "scale": {
-        "domain": [
-          "Planned",
-          "Unplanned"
-        ],
-        "range": [
-          "#4e9a8e",
-          "#d7552b"
+    {
+      "mark": {
+        "type": "circle",
+        "size": 160,
+        "opacity": 1
+      },
+      "encoding": {
+        "y": {
+          "field": "category",
+          "type": "nominal",
+          "sort": {
+            "field": "area_Mha",
+            "order": "descending"
+          }
+        },
+        "x": {
+          "field": "area_Mha",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              24
+            ]
+          },
+          "title": "Total Area Burned (million ha)",
+          "axis": {
+            "titleFontSize": 12,
+            "labelFontSize": 11,
+            "grid": true,
+            "gridColor": "#eee"
+          }
+        },
+        "color": {
+          "field": "area_Mha",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              21
+            ],
+            "range": [
+              "#fdbb84",
+              "#b30000"
+            ]
+          },
+          "legend": null
+        },
+        "tooltip": [
+          {
+            "field": "category",
+            "title": "Vegetation Type"
+          },
+          {
+            "field": "area_Mha",
+            "title": "Area Burned (Mha)",
+            "format": ".2f"
+          }
         ]
-      },
-      "legend": {
-        "titleFontSize": 11,
-        "labelFontSize": 10,
-        "orient": "bottom",
-        "direction": "horizontal"
       }
     },
-    "tooltip": [
-      {
-        "field": "category",
-        "title": "Vegetation Category"
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 10,
+        "fontSize": 11,
+        "fontWeight": "bold"
       },
-      {
-        "field": "fire_type",
-        "title": "Fire Type"
-      },
-      {
-        "field": "area_Mha",
-        "title": "Area Burned (Mha)",
-        "format": ".3f"
+      "encoding": {
+        "y": {
+          "field": "category",
+          "type": "nominal",
+          "sort": {
+            "field": "area_Mha",
+            "order": "descending"
+          }
+        },
+        "x": {
+          "field": "area_Mha",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              24
+            ]
+          }
+        },
+        "text": {
+          "field": "label"
+        },
+        "color": {
+          "condition": {
+            "test": "datum.area_Mha > 10",
+            "value": "#b30000"
+          },
+          "value": "#888"
+        }
       }
-    ]
-  },
+    }
+  ],
   "config": {
     "background": "transparent",
     "view": {
       "stroke": null
     },
     "font": "Lato"
-  },
-  "autosize": {
-    "type": "fit",
-    "contains": "padding"
   }
 }

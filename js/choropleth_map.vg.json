@@ -108,6 +108,52 @@
         "stroke": "#aaa",
         "strokeWidth": 0.5
       }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "lon": 133.5,
+            "lat": -19.5,
+            "label": "NT: 12.6 Mha"
+          },
+          {
+            "lon": 146.5,
+            "lat": -32.0,
+            "label": "NSW: 5.4 Mha\n(23\u00d7 avg)"
+          },
+          {
+            "lon": 144.5,
+            "lat": -37.5,
+            "label": "VIC: 1.5 Mha\n(12\u00d7 avg)"
+          },
+          {
+            "lon": 144.0,
+            "lat": -25.0,
+            "label": "QLD: 5.9 Mha"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "fontSize": 9,
+        "fontWeight": "bold",
+        "color": "#1a0500",
+        "lineBreak": "\n"
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "label"
+        }
+      }
     }
   ],
   "config": {

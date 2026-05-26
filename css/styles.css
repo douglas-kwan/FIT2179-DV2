@@ -179,7 +179,29 @@ body {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 24px;
-  align-items: start; /* cards don't stretch to match height */
+  align-items: start;
+}
+
+/* Equal-height variant — cards always match each other's height */
+.grid-2-equal {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  align-items: stretch;
+}
+
+.grid-2-equal .card {
+  display: flex;
+  flex-direction: column;
+}
+
+.grid-2-equal .card > div[id] {
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.grid-2-equal .card .card-caption {
+  flex-shrink: 0;
 }
 
 .grid-3 {
@@ -201,6 +223,31 @@ body {
   grid-template-columns: 1fr 1.6fr;
   gap: 24px;
   align-items: start;
+}
+
+/* Equal-height narrow-wide (Section 6 donut + bar) */
+.grid-narrow-wide-equal {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: 24px;
+  align-items: stretch;
+}
+
+.grid-narrow-wide-equal .card {
+  display: flex;
+  flex-direction: column;
+}
+
+.grid-narrow-wide-equal .card > div[id] {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.grid-narrow-wide-equal .card .card-caption {
+  flex-shrink: 0;
 }
 
 .full-width { width: 100%; }
@@ -263,8 +310,10 @@ footer strong { color: rgba(255,255,255,0.9); }
 /* ---------- Responsive ---------- */
 @media (max-width: 900px) {
   .grid-2,
+  .grid-2-equal,
   .grid-wide-narrow,
-  .grid-narrow-wide { grid-template-columns: 1fr; }
+  .grid-narrow-wide,
+  .grid-narrow-wide-equal { grid-template-columns: 1fr; }
   .grid-3 { grid-template-columns: 1fr 1fr; }
   .hero-stats { gap: 24px; }
 }

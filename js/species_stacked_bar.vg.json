@@ -2,7 +2,7 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
     "text": "Threatened Species Impacted by the Black Summer Fires",
-    "subtitle": "Species count by taxonomic group and EPBC threat status",
+    "subtitle": "Count by species group and EPBC threat status \u2014 click legend to filter",
     "fontSize": 14,
     "subtitleFontSize": 11,
     "subtitleColor": "#888",
@@ -10,80 +10,13 @@
     "font": "Lato"
   },
   "width": "container",
-  "height": 260,
+  "height": 280,
+  "autosize": {
+    "type": "fit",
+    "contains": "padding"
+  },
   "data": {
     "url": "data/species_by_type_status.csv"
-  },
-  "transform": [
-    {
-      "filter": "datum.Type !== 'Spider'"
-    }
-  ],
-  "mark": {
-    "type": "bar",
-    "cornerRadiusTopLeft": 3,
-    "cornerRadiusTopRight": 3
-  },
-  "encoding": {
-    "y": {
-      "field": "Type",
-      "type": "nominal",
-      "title": "Species Group",
-      "sort": "-x",
-      "axis": {
-        "labelFontSize": 11,
-        "titleFontSize": 12
-      }
-    },
-    "x": {
-      "field": "count",
-      "type": "quantitative",
-      "title": "Number of Species",
-      "stack": "zero",
-      "axis": {
-        "titleFontSize": 12,
-        "labelFontSize": 11,
-        "grid": true,
-        "gridColor": "#eee"
-      }
-    },
-    "color": {
-      "field": "Threatened_Status",
-      "type": "nominal",
-      "title": "Threat Status",
-      "scale": {
-        "domain": [
-          "Vulnerable",
-          "Endangered",
-          "Critically Endangered"
-        ],
-        "range": [
-          "#f4a261",
-          "#e76f51",
-          "#6d1f00"
-        ]
-      },
-      "legend": {
-        "titleFontSize": 11,
-        "labelFontSize": 10,
-        "orient": "bottom",
-        "direction": "horizontal"
-      }
-    },
-    "tooltip": [
-      {
-        "field": "Type",
-        "title": "Species Group"
-      },
-      {
-        "field": "Threatened_Status",
-        "title": "Threat Status"
-      },
-      {
-        "field": "count",
-        "title": "Number of Species"
-      }
-    ]
   },
   "config": {
     "background": "transparent",
@@ -92,8 +25,158 @@
     },
     "font": "Lato"
   },
-  "autosize": {
-    "type": "fit",
-    "contains": "padding"
-  }
+  "layer": [
+    {
+      "params": [
+        {
+          "name": "status_sel",
+          "select": {
+            "type": "point",
+            "fields": [
+              "Threatened_Status"
+            ]
+          },
+          "bind": "legend"
+        }
+      ],
+      "mark": {
+        "type": "bar",
+        "cornerRadiusTopRight": 3,
+        "cornerRadiusBottomRight": 3
+      },
+      "encoding": {
+        "y": {
+          "field": "Type",
+          "type": "nominal",
+          "title": "Species Group",
+          "sort": "-x",
+          "axis": {
+            "labelFontSize": 11,
+            "titleFontSize": 12
+          }
+        },
+        "yOffset": {
+          "field": "Threatened_Status",
+          "type": "nominal",
+          "sort": [
+            "Critically Endangered",
+            "Endangered",
+            "Vulnerable"
+          ]
+        },
+        "x": {
+          "field": "count",
+          "type": "quantitative",
+          "title": "Number of Species",
+          "axis": {
+            "titleFontSize": 12,
+            "labelFontSize": 11,
+            "grid": true,
+            "gridColor": "#eee"
+          }
+        },
+        "color": {
+          "field": "Threatened_Status",
+          "type": "nominal",
+          "title": "Threat Status",
+          "sort": [
+            "Critically Endangered",
+            "Endangered",
+            "Vulnerable"
+          ],
+          "scale": {
+            "domain": [
+              "Critically Endangered",
+              "Endangered",
+              "Vulnerable"
+            ],
+            "range": [
+              "#6d1f00",
+              "#e76f51",
+              "#f4a261"
+            ]
+          },
+          "legend": {
+            "orient": "bottom",
+            "direction": "horizontal",
+            "titleFontSize": 11,
+            "labelFontSize": 10
+          }
+        },
+        "opacity": {
+          "condition": {
+            "param": "status_sel",
+            "value": 1
+          },
+          "value": 0.15
+        },
+        "tooltip": [
+          {
+            "field": "Type",
+            "title": "Species Group"
+          },
+          {
+            "field": "Threatened_Status",
+            "title": "Threat Status"
+          },
+          {
+            "field": "count",
+            "title": "Number of Species"
+          }
+        ]
+      },
+      "transform": [
+        {
+          "filter": "datum.Type !== 'Spider'"
+        }
+      ]
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "Type": "Plant",
+            "x_pos": 175,
+            "label": "272 total"
+          },
+          {
+            "Type": "Frog",
+            "x_pos": 15,
+            "label": "3 of 14 frogs\nCritically Endangered"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 4,
+        "fontSize": 9,
+        "fontWeight": "bold",
+        "color": "#b30000",
+        "lineBreak": "\n"
+      },
+      "encoding": {
+        "y": {
+          "field": "Type",
+          "type": "nominal",
+          "sort": [
+            "Plant",
+            "Bird",
+            "Frog",
+            "Mammal",
+            "Reptile",
+            "Fish",
+            "Insect"
+          ]
+        },
+        "x": {
+          "field": "x_pos",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "label"
+        }
+      }
+    }
+  ]
 }
