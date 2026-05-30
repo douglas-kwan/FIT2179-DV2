@@ -1,14 +1,6 @@
-/* =========================================================
-   Australia's Black Summer — FIT2179 Data Visualisation 2
-   Stylesheet
-   Author: Doug
-   Date: May 2026
-   ========================================================= */
 
-/* ---------- Google Fonts import ---------- */
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,400&family=Playfair+Display:wght@700;900&display=swap');
 
-/* ---------- Reset / base ---------- */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
@@ -36,7 +28,6 @@ body {
   line-height: 1.7;
 }
 
-/* ---------- Hero ---------- */
 .hero {
   background: linear-gradient(135deg, #1a0500 0%, #5c1a00 40%, #b30000 100%);
   color: #fff;
@@ -110,14 +101,12 @@ body {
   margin-top: 4px;
 }
 
-/* ---------- Page wrapper ---------- */
 .page-wrapper {
   max-width: var(--max-width);
   margin: 0 auto;
   padding: 0 24px;
 }
 
-/* ---------- Section ---------- */
 .section { padding: 60px 0 20px; }
 
 .section-header { margin-bottom: 32px; }
@@ -148,18 +137,15 @@ body {
   line-height: 1.7;
 }
 
-/* ---------- Cards ---------- */
 .card {
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: 12px;
   box-shadow: var(--shadow);
   padding: 24px 20px 20px;
-  /* NO overflow:hidden — that clips bottom legends */
-  min-width: 0; /* prevents grid column blowout */
+  min-width: 0; 
 }
 
-/* Every chart div fills its card width so "width":"container" works */
 .card > div[id],
 .card > div > div[id] {
   width: 100%;
@@ -174,7 +160,6 @@ body {
   padding-top: 12px;
 }
 
-/* ---------- Grid layouts ---------- */
 .grid-2 {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -182,7 +167,6 @@ body {
   align-items: start;
 }
 
-/* Equal-height variant — cards always match each other's height */
 .grid-2-equal {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -225,7 +209,6 @@ body {
   align-items: start;
 }
 
-/* Equal-height narrow-wide (Section 6 donut + bar) */
 .grid-narrow-wide-equal {
   display: grid;
   grid-template-columns: 1fr 1.6fr;
@@ -252,20 +235,17 @@ body {
 
 .full-width { width: 100%; }
 
-/* ---------- Vega embed — make it fill the card ---------- */
 .vega-embed {
   width: 100% !important;
   display: block;
 }
 .vega-embed summary { display: none !important; }
-/* Prevent the inner SVG from overflowing its container */
 .vega-embed canvas,
 .vega-embed svg {
   max-width: 100%;
   display: block;
 }
 
-/* ---------- Callout / quote blocks ---------- */
 .callout {
   background: linear-gradient(135deg, #fff5f0 0%, #fff 100%);
   border-left: 4px solid var(--fire-red);
@@ -288,14 +268,12 @@ body {
   margin: 20px 0;
 }
 
-/* ---------- Divider ---------- */
 .divider {
   border: none;
   border-top: 1px solid var(--border);
   margin: 56px 0;
 }
 
-/* ---------- Footer ---------- */
 footer {
   background: #1a0500;
   color: rgba(255,255,255,0.6);
@@ -307,7 +285,6 @@ footer {
 footer a { color: rgba(255,255,255,0.75); }
 footer strong { color: rgba(255,255,255,0.9); }
 
-/* ---------- Responsive ---------- */
 @media (max-width: 900px) {
   .grid-2,
   .grid-2-equal,
